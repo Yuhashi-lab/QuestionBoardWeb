@@ -58,7 +58,7 @@ test:
   <<: *default
   database: QuestionBoard_test_1017
 
-  username: newuser
+  username: postgres
 
   # The password associated with the postgres role (username).
   password: 0125U
