@@ -1,0 +1,30 @@
+env:
+  global:
+    secure: t/3DwJH4O54kBIiKmSc7DaT+3wJWZOoFBZyvHZVHQhS24er7IUBXdrwhhwFTUx/YIoU22PMicK4PR7Fg4sDYcoDDHFFiNOC/07ZXUoGQoz80+IBm12cIpLZo+OUzauGgqLRRGzSVoxcEDb0s7F7Z8ecOhCuC4r8X56hQIDf52lmxBO/S5nLIVkRKuqrKZMdhPdBaczCj4BA6xyO907OJlkHfIKgKqenMFERHNQ7cTTeGDZ9TgozL5CJEc1UIrco2tMf5I26XHTvtETyeMlUwSbJupLz76ldgtlCB7KHFtsYdN6/IhLnssp1UTg8AVN++zp2/0zgq+FXOpJjlfe9EUNkzhyzqv/FcGCUAuadutKwiJWLLdQy2cOqo4By4T8/1UdXIaMlasNUXpDpJPopQ6G70uOZ/JfNkhy1AvYqnLzbhAimwYu8X915GSWJVcA6XYbOK7ks5jROQouB9GxKmyfbgq3HQB5EZTDVN/Je+Ao6DfdBzOxxTC4RDmy2h24hlRLFaOTO70LTsr+NNj8aPG+PF1frdnyVV5uOVWJcF0KA1D3/VPMHpty+HOkUJQ7dApO0eOmDqEi+7f+P/whsFs02P/Vslr9GOAnMzo9nHhUg90W+kEZJ22aq7Ymmen/PhtAxpXHucFx0V4YjJis95176Qqeh0miCrWumbMCh3+60=
+
+
+language: ruby
+rvm:
+- 2.3.1
+services:
+- postgresql
+bundler_args: "--without development --deployment"
+cache: bundler
+before_script:
+- bundle exec rake db:create RAILS_ENV=test
+- bundle exec rake db:migrate RAILS_ENV=test
+script:
+- bundle exec rake test
+after_success:
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Success" 'https://notify-api.line.me/api/notify'
+after_failure:
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Failure" 'https://notify-api.line.me/api/notify'
+after_deploy:
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Deployed" 'https://notify-api.line.me/api/notify'
+deploy:
+  provider: heroku
+  api_key:
+    secure: dVt+sutPSd7wnbID2YyvaCy1Hkk3nQEYhX4O4anAza4fFLyVGya8W7i0GeUmec931OG25Qj4gxxqA+cuMGQqvIJibiO3J8WXXACrUfPOK3BgQEC0lPZGbdU8H8a/ucjmWpn9iDsrtsh0WGFHoeeUnUh+jQWL9CxB8g0xOy2xceR1Nc855/tOZvFcOfl+VQSq/+Pw7+dVzAw1dol5h9XCylVHys6lB/7TeNVuI0SP0aTqXO40tfRXkknQK1V9+tskRV72VENrR5jAgPnSauWNhEQNkcttqmHO0SB8lA0vW7WjylIF1QqJKhB1H/di/QGLcdETWwEqQkXK0dLwEM+WZD065doovHuQVGefq0TJMVMJcP86pJkkXFWNJaWo/mCckBxthCG5Cc5Kzu58ZzOA03fICrL+fP8zLxbGbCQQbdGFPKTJl78sQd9r6kwWJeA0wwITqOHQf2kdqz4tjGmsGT7fEw6SidqywsxdcMJ79eQHxOqtcMIg7lbMtzWb0HJXgihutrzXWgU2PidpSirNg63UEWaaBXPYOpCPtX/+rKKBxqBXkxQMhXF4+66E59dVFzzoPDcaWzuerIdAaamMm5BsVKcawxI8Q8AziHPnePL3QKfOFCD0zancui/roKsi4Mforo1TTfde6aRhQTPkUTfkXMdE/jujM20T2QvkEB8=
+  app: questionboardweb
+  on:
+    repo: Yuhashi-lab/QuestionBoardWeb
