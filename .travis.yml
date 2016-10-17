@@ -25,6 +25,7 @@ deploy:
   provider: heroku
   api_key:
     secure: dVt+sutPSd7wnbID2YyvaCy1Hkk3nQEYhX4O4anAza4fFLyVGya8W7i0GeUmec931OG25Qj4gxxqA+cuMGQqvIJibiO3J8WXXACrUfPOK3BgQEC0lPZGbdU8H8a/ucjmWpn9iDsrtsh0WGFHoeeUnUh+jQWL9CxB8g0xOy2xceR1Nc855/tOZvFcOfl+VQSq/+Pw7+dVzAw1dol5h9XCylVHys6lB/7TeNVuI0SP0aTqXO40tfRXkknQK1V9+tskRV72VENrR5jAgPnSauWNhEQNkcttqmHO0SB8lA0vW7WjylIF1QqJKhB1H/di/QGLcdETWwEqQkXK0dLwEM+WZD065doovHuQVGefq0TJMVMJcP86pJkkXFWNJaWo/mCckBxthCG5Cc5Kzu58ZzOA03fICrL+fP8zLxbGbCQQbdGFPKTJl78sQd9r6kwWJeA0wwITqOHQf2kdqz4tjGmsGT7fEw6SidqywsxdcMJ79eQHxOqtcMIg7lbMtzWb0HJXgihutrzXWgU2PidpSirNg63UEWaaBXPYOpCPtX/+rKKBxqBXkxQMhXF4+66E59dVFzzoPDcaWzuerIdAaamMm5BsVKcawxI8Q8AziHPnePL3QKfOFCD0zancui/roKsi4Mforo1TTfde6aRhQTPkUTfkXMdE/jujM20T2QvkEB8=
+  run: "rake db:migrate"
   app: questionboardweb
   on:
     repo: Yuhashi-lab/QuestionBoardWeb
