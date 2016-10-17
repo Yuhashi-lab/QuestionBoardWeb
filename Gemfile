@@ -54,3 +54,5 @@ gem 'coffee-script-source', '1.8.0'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 
 gem 'cancancan'
+
+gem 'grape-jbuilder'
