@@ -16,11 +16,11 @@ before_script:
 script:
 - bundle exec rake test
 after_success:
-- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Success" 'https://notify-api.line.me/api/notify'
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Success-https://travis-ci.org/Yuhashi-lab/QuestionBoardWeb" 'https://notify-api.line.me/api/notify'
 after_failure:
-- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Failure" 'https://notify-api.line.me/api/notify'
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Failure-https://travis-ci.org/Yuhashi-lab/QuestionBoardWeb" 'https://notify-api.line.me/api/notify'
 after_deploy:
-- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Deployed" 'https://notify-api.line.me/api/notify'
+- curl -X POST -H 'Authorization:Bearer '$LINE_API_KEY -F "message=Deployed-https://questionboardweb.herokuapp.com/" 'https://notify-api.line.me/api/notify'
 deploy:
   provider: heroku
   api_key:
