@@ -240,6 +240,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coffee-script-source (= 1.8.0)
   devise
+  grape
   grape-jbuilder
   jbuilder (~> 2.0)
   jquery-rails

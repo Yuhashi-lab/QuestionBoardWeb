@@ -55,4 +55,6 @@ gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 
 gem 'cancancan'
 
+gem 'grape'
+
 gem 'grape-jbuilder'
