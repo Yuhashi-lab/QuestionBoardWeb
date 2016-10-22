@@ -58,3 +58,7 @@ gem 'cancancan'
 gem 'grape'
 
 gem 'grape-jbuilder'
+
+gem 'devise_token_auth'
+
+gem 'omniauth', '>= 1.0.0'
