@@ -40,12 +40,12 @@ module API
                                           board_id: params[:board_id],}) # こちらでquestion内を検索し、@question内に値を格納
             if question.save
               @result = "succes"
-              else 
+              else
               @result = "failed"
             end
           end
 
       end
-  end
+    end
   end
 end

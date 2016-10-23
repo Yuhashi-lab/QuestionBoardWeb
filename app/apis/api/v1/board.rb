@@ -25,7 +25,7 @@ module API
             end
 
         post '' , jbuilder: 'api/v1/board/create' do # resourceでURL末尾questionを指定し、更にその後ろでid(int型)が入っている際の動作
-        ##  authenticate_user!
+        authenticate_user!
         board = ::Board.create({name:     params[:name],
                                 category: params[:category],
                                 detail:   params[:detail],

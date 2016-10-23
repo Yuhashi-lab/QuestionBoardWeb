@@ -22,7 +22,7 @@ module API
               uid = request.headers['Uid']
               token = request.headers['Access-Token']
               client = request.headers['Client']
-              @user = User.find_by_uid(uid)
+              @user = ::User.find_by_uid(uid)
 
               # 認証に失敗したらエラー
               unless @user && @user.valid_token?(token, client)
