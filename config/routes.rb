@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+
+namespace :api do
+  mount_devise_token_auth_for 'User', at: 'v1/auth'
+end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+
+  mount API::Base => '/'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

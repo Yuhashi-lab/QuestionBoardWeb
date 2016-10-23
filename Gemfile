@@ -54,3 +54,11 @@ gem 'coffee-script-source', '1.8.0'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 
 gem 'cancancan'
+
+gem 'grape'
+
+gem 'grape-jbuilder'
+
+gem 'devise_token_auth'
+
+gem 'omniauth', '>= 1.0.0'
