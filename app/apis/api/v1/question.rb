@@ -27,12 +27,26 @@ module API
             @question = ::Question.find(params[:id]) # こちらでquestion内を検索し、@question内に値を格納
           end
 
+          # PUT /api/v1/questions/{:id}
+          desc 'Ask for a question.'
+            params do
+              requires :answer, type: String,    desc: 'answer text.'
+            end
+          put ':id' , jbuilder: 'api/v1/question/upDate' do
+            question = ::Question.find(params[:id])
+            if  question.update(answer: params[:answer])
+              @result = "success"
+            else
+              @result = "failed"
+            end
+          end
+
           # POST /api/v1/questions
           desc 'Create a question.'
             params do
               requires :questioner ,type: String, desc: 'name'
-              requires :content ,type: String, desc: 'content'
-              requires :board_id ,type: Integer, desc: 'board_id'
+              requires :content ,   type: String, desc: 'content'
+              requires :board_id ,  type: Integer, desc: 'board_id'
             end
           post '' , jbuilder: 'api/v1/question/create' do # resourceでURL末尾questionを指定し、更にその後ろでid(int型)が入っている際の動作
             question = ::Question.create({questioner: params[:questioner],
