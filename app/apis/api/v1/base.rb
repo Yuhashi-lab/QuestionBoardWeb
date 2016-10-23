@@ -23,7 +23,7 @@ module API
               token = request.headers['Access-Token']
               client = request.headers['Client']
               @user = User.find_by_uid(uid)
-      
+
               # 認証に失敗したらエラー
               unless @user && @user.valid_token?(token, client)
                 authenticate_error!
@@ -33,6 +33,7 @@ module API
 
       mount V1::Question
       mount V1::User
+      mount V1::Board
 
     end
   end
