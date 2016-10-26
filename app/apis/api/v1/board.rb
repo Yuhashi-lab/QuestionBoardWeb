@@ -5,8 +5,7 @@ module API
           resource :boards do
             # GET /api/boards/:board_id
             desc 'Return all boards.' # desc内は説明
-            get '', jbuilder: 'api/v1/board/index' do # api/v1/board/indexの.jbuilderを指定し
-                authenticate_user!
+            get '', jbuilder: 'api/v1/board/index' do
                 @boards = ::Board.where(user_id:  @user.id)
             end
 
@@ -32,13 +31,11 @@ module API
             # GET /api/v1/boards/search
             desc 'Return search result.'
             params do
-                requires :word , type: String, desc: 'word'
+              requires :search_word, type: String
             end
-            post '/search', jbuilder: 'api/v1/board/search' do # api/v1/board/search.jbuilderを指定し
-              @results = ::Board.where("name like '%" + params[:word] + "%'")
+            get '/search/:search_word', jbuilder: 'api/v1/board/search' do
+              @results = ::Board.where("name like '%" + params[:search_word] + "%'")
             end
-
-
           end
 
     end
