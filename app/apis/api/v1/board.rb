@@ -3,10 +3,11 @@ module API
     class Board < Grape::API
 
           resource :boards do
-            # GET /api/boards/:board_id
-            desc 'Return all boards.' # desc内は説明
-            get '', jbuilder: 'api/v1/board/index' do
-                @boards = ::Board.where(user_id:  @user.id)
+
+            # GET /api/boards/:id
+            desc 'Return board.'
+            get ':id', jbuilder: 'api/v1/board/show' do
+                @board = ::Board.find(params[:id])
             end
 
             # POST /api/v1/boards
