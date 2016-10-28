@@ -6,7 +6,7 @@ module API
 
             # GET /api/boards/:id
             desc 'Return board.'
-            get ':id', jbuilder: 'api/v1/board/show' do
+            get ':id', jbuilder: 'app/views/apis/api/v1/board/show' do
                 @board = ::Board.find(params[:id])
             end
 
