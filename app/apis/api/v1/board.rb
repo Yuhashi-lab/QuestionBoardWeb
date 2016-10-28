@@ -6,7 +6,7 @@ module API
 
             # GET /api/boards/:id
             desc 'Return board.'
-            get ':id', jbuilder: 'app/views/apis/api/v1/board/show' do
+            get ':id', jbuilder: 'api/v1/board/show' do
                 @board = ::Board.find(params[:id])
             end
 
@@ -17,11 +17,11 @@ module API
                 requires :detail ,  type: String, desc: 'detail'
             end
 
-            post '' , jbuilder: 'api/v1/board/create' do # resourceでURL末尾questionを指定し、更にその後ろでid(int型)が入っている際の動作
+            post '' , jbuilder: 'api/v1/board/create' do
               authenticate_user!
               board = ::Board.create({name:     params[:name],
                                       detail:   params[:detail],
-                                      user_id:  @user.id,}) # こちらでquestion内を検索し、@question内に値を格納
+                                      user_id:  @user.id,})
                 if board.save
                   @result = "succes"
                   else
