@@ -37,6 +37,14 @@ module API
             get '/search/:search_word', jbuilder: 'api/v1/board/search' do
               @results = ::Board.where("name like '%" + params[:search_word] + "%'")
             end
+
+            # GET /api/v1/boards/index
+            desc 'Return user board index.'
+            get '/index', jbuilder: 'api/v1/board/index' do
+              authenticate_user!
+              @results = ::Board.where( user_id:  @user.id)
+            end
+
           end
 
     end
