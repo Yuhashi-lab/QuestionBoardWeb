@@ -40,9 +40,9 @@ module API
 
             # GET /api/v1/boards/index
             desc 'Return user board index.'
-            get '/index', jbuilder: 'api/v1/board/index' do
+            get '', jbuilder: 'api/v1/board/index' do
               authenticate_user!
-              @results = ::Board.where( user_id:  @user.id)
+              @results = ::Board.where(user_id:  @user.id)
             end
 
           end
